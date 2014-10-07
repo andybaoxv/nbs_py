@@ -1,4 +1,4 @@
-""" This script load "allECL_CG_TESRA_Expression_9-26-14.csv"
+""" This script load "COMBAT_allECL_CG_TESRA_Expression_9-26-14.csv"
 """
 
 import numpy as np
@@ -15,7 +15,7 @@ else:
     basepath = "basepath Error!"
 
 # file containing ECL, CG, TESRA
-filename_1 = "allECL_CG_TESRA_Expression_9-26-14.csv"
+filename_1 = "COMBAT_allECL_CG_TESRA_Expression_9-26-14.csv"
 
 # file containing 1439 probe names, which are the overlap between ECL and
 # STRING network
