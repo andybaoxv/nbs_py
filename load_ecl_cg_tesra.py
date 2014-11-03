@@ -1,4 +1,6 @@
 """ This script load "COMBAT_allECL_CG_TESRA_Expression_9-26-14.csv"
+# changes on Nov 3, 2014, changes in expression dataset
+This script load "COMBAT_allECL_CG_TESRA_Expression_11-1-14.csv"
 """
 
 import numpy as np
@@ -16,7 +18,7 @@ else:
 
 
 # file containing ECL, CG, TESRA after COMBAT normalization
-filename_1 = "COMBAT_allECL_CG_TESRA_Expression_9-26-14.csv"
+filename_1 = "COMBAT_allECL_CG_TESRA_Expression_11-1-14.csv"
 
 # file containing 1439 probe names, which are the overlap between ECL and
 # STRING network
@@ -29,17 +31,20 @@ filename_3 = "All_ECL_CG_TESRA_Phenotypes_9-26-14.csv"
 # load gene expression dataset
 tmp = load_gene_expression(basepath+filename_1)
 
+n_ecl = 229
+n_cg = 135
+n_tesra = 247
 # extract ECL dataset
-data_ecl = tmp[0][:,0:229]
-case_id_ecl = tmp[1][0:229]
+data_ecl = tmp[0][:,0:n_ecl]
+case_id_ecl = tmp[1][0:n_ecl]
 
 # extract COPDGene dataset
-data_cg = tmp[0][:,229:365]
-case_id_cg = tmp[1][229:365]
+data_cg = tmp[0][:,n_ecl:n_ecl+n_cg]
+case_id_cg = tmp[1][n_ecl:n_ecl+n_cg]
 
 # extract tesra dataset
-data_tesra = tmp[0][:,365:612]
-case_id_tesra = tmp[1][365:612]
+data_tesra = tmp[0][:,n_ecl+n_cg:n_ecl+n_cg+n_tesra]
+case_id_tesra = tmp[1][n_ecl+n_cg:n_ecl+n_cg+n_tesra]
 
 # extract probe names
 probe_name_3096 = tmp[2]
@@ -81,6 +86,7 @@ data_ecl_cg_tesra_1439 = data_ecl_cg_tesra[idx_probe_1439,:]
 scipy.io.savemat(basepath+"data_ecl_cg_tesra_1439.mat",\
         mdict={"data_ecl_cg_tesra_1439":data_ecl_cg_tesra_1439})
 
+"""
 # Read Pheno information
 case_status = []
 fev1_values = []
@@ -93,10 +99,9 @@ for i in range(1,len(lines)):
 file_pheno.close()
 case_status = np.array(case_status)
 fev1_values = np.array(fev1_values)
-
 # save copd case status and fev1 values into mat files
 scipy.io.savemat(basepath+"case_status_ecl_cg_tesra.mat",\
         mdict={"case_status_ecl_cg_tesra":case_status})
 scipy.io.savemat(basepath+"fev1_values_ecl_cg_tesra.mat",\
         mdict={"fev1_values_ecl_cg_tesra":fev1_values})
-
+"""
